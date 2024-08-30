@@ -9,15 +9,15 @@
 }
 
 body {
-    background-color: rgb(229, 236, 239);
-}
+    background-color: rgb(222, 243, 255);
+}   
 
 section {
     padding: 28px 8%;
 }
 
 header{
-    background-color: rgb(77, 85, 94);
+    background-color: rgb(127, 181, 214);
     width: 100%;
     padding: 28px 8%;
     box-shadow: 0 0.1rem 0.5rem #ccc;
@@ -32,7 +32,7 @@ header{
 
 #logo{
     font-size: 25px;
-    color: rgb(5, 55, 96);
+    color: rgb(1, 37, 63);
 }
 
 #lista_inicial{
@@ -41,9 +41,9 @@ header{
     gap: 48px;
 }
 
-.item_nav a {
+.item_nav a {   
     text-decoration: none;
-    color: black;
+    color: rgb(27, 100, 169);
     font-weight: 600;
 }
 
@@ -58,7 +58,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(5, 55, 96) ;
+    background-color: rgb(0, 0, 0) ;
     border-radius: 12px;
     padding: 10px 14px;
     font-weight: 600;
@@ -81,39 +81,51 @@ header{
     color: white;
 }
 
-/* Estilização do conteudo principal da homepage */
-
-#home_page{
-    display: flex;
-    min-height: calc(100vh - 91px);
+div {
+    display: none;
+    color: #010412;
 }
 
-#cta{
-    width: 35%;
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    margin-top: 5%;
+#content1, #content2{
+    color: darkblue;
+    margin-top: 10%;
+    margin-left: 20%;
 }
 
-#cta .title{
-    font-size: 2.5rem;
+#content3{
+    color: darkblue;
+    margin-top: 10%;
+    margin-left: 30%;
+}   
+
+#tinta_utilizada, #primer_utilizado{
+    margin-left: 25%;
+    width: 20%;
+    margin-top: 15px;
+}
+
+.visible {
+    display: block;
+}
+
+#resultados {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: darkblue;
 }
 
-#cta .descricao {
-    font-size: 1.2rem;
+table {
+    width: 50%;
+    margin: 0 auto;
+    border-collapse: collapse;
 }
-
-#banner {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
+th, td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    word-wrap: break-word;
 }
-
-#banner .sensor{
-    display: flex;
-    height: 45vh;
-    margin-top: -25%;
-    margin-right: 25%;
+th {
+    background-color: #f2f2f2;
 }
