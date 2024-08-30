@@ -63,9 +63,25 @@
 
         function mostrarSelecao(){
 
-            var limiteAmbiental = 45                            // Limites de emissão estabelecidos por licenciamentos após 2007
-            if(validacao_licenca.checked){
-                limiteAmbiental = 60                            // Limites de emissão (45 g/m²) permitidos antes de 2007
+            if(tipo_de_veiculo.value == 'carro'){
+                var limiteAmbiental = 45                        // Limites de emissão estabelecidos por licenciamentos após 2007 para carros
+                    if(validacao_licenca.checked){
+                        limiteAmbiental = 60                    // Limites de emissão permitidos antes de 2007
+                }
+            }
+
+            if(tipo_de_veiculo.value == 'caminhao'){
+                var limiteAmbiental = 70                        // Limites de emissão estabelecidos por licenciamentos após 2007 para Cabine de caminhões, carrocerias de veículos utilitários, pick-up e caminhonete
+                    if(validacao_licenca.checked){
+                        limiteAmbiental = 90                    // Limites de emissão permitidos antes de 2007
+                }
+            }
+
+            if(tipo_de_veiculo.value == 'onibus'){
+                var limiteAmbiental = 150                        // Limites de emissão estabelecidos por licenciamentos após 2007 para Ônibus, Trator e veículos agrícolas e/ou utilizados na construção civil
+                    if(validacao_licenca.checked){
+                        limiteAmbiental = 225                    // Limites de emissão permitidos antes de 2007
+                }
             }
 
             if(tipo_de_veiculo.value =='carro'){
