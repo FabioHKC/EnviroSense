@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Negócio</title>
+</head>
+
+<body>
+    <h1>Calculadora de Negócio</h1>
+
+    Informe o nome da sua Empresa
+    <input id="input_nome_empresa" type="text" checked><br><br>
+    informe o ano de expedição da sua licença ambiental:
+    <!--  <fieldset>
+        <legend>Is your cat an indoor or outdoor cat?</legend>
+        <label><input id="indoor" type="radio" name="indoor-outdoor" value="indoor" checked> Indoor</label>
+        <label><input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor"> Outdoor</label>
+      </fieldset> -->
+    <input id="input_data_licenciamento" type="number" min="1980" checked><br><br>
+    Informe o número de veículos leves pintados por mês:
+    <input id="input_qtd_carros" type="number" min="0" checked><br><br>
+    Informe o número de caminhões pintados por mês:
+    <input id="input_qtd_caminhao" type="number" min="0" checked><br><br>
+    Informe o número de ônibus pintados por mês:
+    <input id="input_qtd_onibus" type="number" min="0" checked><br><br>
+    Informe o volume de tinta usado por mês (em litros):
+    <input id="input_litros_tinta_mes" type="number" min="0" checked><br><br>
+    Informe o peso de solvente usado por mês (em quilos):
+    <input id="input_peso_solvente_mes" type="number" min="0" checked><br><br>
+    <button onclick="mostrarCalculo()">Calcular</button><br><br>
+
+    <div id="mostrar_calculo">
+    </div>
+</body>
+
+</html>
+<script>
+    // cov = 0.42;
+    // s1 = 25;
+    // s2 = 90;
+    // s3 = 150;
+
+    // ve = 1000 * ((vc1 * cov1) + solv1 - (rsa + rsb)) / ((b1 * s1) + (b2 * s2) + (b3 * s3));
+
+    function mostrarCalculo() {
+        const COV = 0.42;
+        const S1 = 25;
+        const S2 = 90;
+        const S3 = 150;
+        const RSA = 0;
+        const RSB = 0;
+
+        var dataLicenciamento = Number(input_data_licenciamento.value);
+        var b1 = Number(input_qtd_carros.value);
+        var b2 = Number(input_qtd_caminhao.value);
+        var b3 = Number(input_qtd_onibus.value);
+        var vc = Number(input_litros_tinta_mes.value);
+        var solv = Number(input_peso_solvente_mes.value);
+        var limiteEmissao = 0;
+
+
+        if (dataLicenciamento < 2007) {
+            if (b1 > 0) {
+                limiteEmissao += 60;
+            }
+            if (b2 > 0) {
+                limiteEmissao += 90;
+            }
+            if (b3 > 0) {
+                limiteEmissao += 225;
+            }
+        }
+
+        if (dataLicenciamento >= 2007) {
+            if (b1 > 0) {
+                limiteEmissao += 45;
+            }
+            if (b2 > 0) {
+                limiteEmissao += 70;
+            }
+            if (b3 > 0) {
+                limiteEmissao += 150;
+            }
+        }
+
+        /*  
+        var calculo1 = 1000 * ((vc * COV) + solv - (RSA + RSB));
+        var calculo2 = (b1 * S1) + (b2 * S2) + (b3 * S3);
+        var volumeEmissao = calculo1 / calculo2;
+        */
+
+        var volumeEmissao = Number((1000 * ((vc * COV) + solv - (RSA + RSB))) / ((b1 * S1) + (b2 * S2) + (b3 * S3)))
+
+        if (volumeEmissao <= limiteEmissao) {
+            mostrar_calculo.innerHTML = `
+        Sua fábrica pode emitir até ${limiteEmissao.toFixed(2)}g/m<sup>2</sup> de COVs. E sua emissão atual, ignorando os métodos de contenção, é de ${volumeEmissao.toFixed(2)}g/m<sup>2</sup> de COVs.
+        Parabéns, sua fábrica está dentro dos padrões de emissão de seu licenciamento ambiental. 
+        `
+        }
+
+        if (volumeEmissao > limiteEmissao) {
+            mostrar_calculo.innerHTML = `
+        Sua fábrica pode emitir até ${limiteEmissao.toFixed(2)}g/m<sup>2</sup> de COVs. Porém sua emissão atual, ignorando os métodos de contenção, é de ${volumeEmissao.toFixed(2)}g/m<sup>2</sup> de COVs.
+        Esses níveis podem fazer sua Fábrica perder a licença ambiental, além de sofrer multa de até 350 mil reias mais multa diária de 35 mil reais.  
+        `
+        }
+
+    };
+
+</script>
