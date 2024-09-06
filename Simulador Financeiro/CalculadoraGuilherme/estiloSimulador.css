@@ -9,7 +9,7 @@
 }
 
 body {
-    background-color: rgb(222, 243, 255);
+    background-color: rgb(255, 255, 255);
 }   
 
 section {
@@ -17,7 +17,7 @@ section {
 }
 
 header{
-    background-color: rgb(127, 181, 214);
+    background-color: #DEEEF7;
     width: 100%;
     padding: 28px 8%;
     box-shadow: 0 0.1rem 0.5rem #ccc;
@@ -58,13 +58,27 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(0, 0, 0) ;
+    background-color: #2196F3 ;
     border-radius: 12px;
     padding: 10px 14px;
     font-weight: 600;
-    box-shadow: 0px 0px 10px 2px rgb(34, 34, 34);
     cursor: pointer;
     color: white;
+}
+
+#cadastro {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    align-items: center;
+    gap: 40px;
+}
+
+a {
+    text-decoration: none;
+    text-decoration: none;
+    color: rgb(27, 100, 169);
+    font-weight: 600;
 }
 
 #botao_padrao2 {
