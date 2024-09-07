@@ -66,6 +66,35 @@ header{
     color: white;
 }
 
+/* Botões e input do simulador */ 
+#btn_formulario1, #btn_formulario2 {
+    border: none;
+    display: flex;  
+    background-color: #6CCE6F;
+    margin-top: 10px;
+    margin-left: 400px;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+}
+
+#btn_formulario3 {
+    border: none;
+    display: flex;  
+    background-color: #6CCE6F;
+    margin-top: 10px;
+    margin-left: 250px ;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+
+}
+
+/* -------------------------------------------------------------------- */ 
 #cadastro {
     display: flex;
     justify-content: center;
