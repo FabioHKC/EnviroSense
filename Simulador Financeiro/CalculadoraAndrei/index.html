@@ -8,27 +8,24 @@
 </head>
 
 <body>
-    <h1>Calculadora de Negócio</h1>
+    <h1>Calculadora de Financeira</h1>
 
     Informe o nome da sua Empresa
-    <input id="input_nome_empresa" type="text" checked><br><br>
-    informe o ano de expedição da sua licença ambiental:
-    <!--  <fieldset>
-        <legend>Is your cat an indoor or outdoor cat?</legend>
-        <label><input id="indoor" type="radio" name="indoor-outdoor" value="indoor" checked> Indoor</label>
-        <label><input id="outdoor" type="radio" name="indoor-outdoor" value="outdoor"> Outdoor</label>
-      </fieldset> -->
-    <input id="input_data_licenciamento" type="number" min="1980" checked><br><br>
-    Informe o número de veículos leves pintados por mês:
-    <input id="input_qtd_carros" type="number" min="0" checked><br><br>
-    Informe o número de caminhões pintados por mês:
-    <input id="input_qtd_caminhao" type="number" min="0" checked><br><br>
-    Informe o número de ônibus pintados por mês:
-    <input id="input_qtd_onibus" type="number" min="0" checked><br><br>
+    <input id="input_nome_empresa" type="text"><br><br>
+    Sua licença ambiental é anterior a 2007:
+    <input id="input_data_licenciamento" type="checkbox"><br><br>
+    Informe o tipo de veículo:
+    <select id="input_tipo_veiculo">
+        <option value="carro">Carro</option>
+        <option value="caminhao">Caminhão</option>
+        <option value="onibus">Ônibus</option>
+    </select><br><br>
+    Informe o número de carrocerias pintadas por mês:
+    <input id="input_qtd_carrocerias" type="number" min="0"><br><br>
     Informe o volume de tinta usado por mês (em litros):
-    <input id="input_litros_tinta_mes" type="number" min="0" checked><br><br>
-    Informe o peso de solvente usado por mês (em quilos):
-    <input id="input_peso_solvente_mes" type="number" min="0" checked><br><br>
+    <input id="input_litros_tinta_mes" type="number" min="0"><br><br>
+    Informe o volume de priimer usado por mês (em litros):
+    <input id="input_litros_primer_mes" type="number" min="0"><br><br>
     <button onclick="mostrarCalculo()">Calcular</button><br><br>
 
     <div id="mostrar_calculo">
@@ -42,47 +39,61 @@
     // s2 = 90;
     // s3 = 150;
 
-    // ve = 1000 * ((vc1 * cov1) + solv1 - (rsa + rsb)) / ((b1 * s1) + (b2 * s2) + (b3 * s3));
+    // ve = 1000 * ((vc1 * cov1) + solv1 - (rsa + rsb)) / (b1 * s1);
 
     function mostrarCalculo() {
-        const COV = 0.42;
-        const S1 = 25;
-        const S2 = 90;
-        const S3 = 150;
+        //Quantidade média de COV em tinta para pintura automotiva.
+        const COVTinta = 0.42;
+        //Quantidade média de COV em Primer para pintura automotiva.
+        const COVPrimer = 0.42;
+        // Valor referente aos métodos de controle (serão desprezados)
         const RSA = 0;
+        // Valor referente aos métodos de controle (serão desprezados)
         const RSB = 0;
 
-        var dataLicenciamento = Number(input_data_licenciamento.value);
-        var b1 = Number(input_qtd_carros.value);
-        var b2 = Number(input_qtd_caminhao.value);
-        var b3 = Number(input_qtd_onibus.value);
-        var vc = Number(input_litros_tinta_mes.value);
-        var solv = Number(input_peso_solvente_mes.value);
+        const qtdCarroceria = Number(input_qtd_carrocerias.value);
+        const litrosTintaMes = Number(input_litros_tinta_mes.value);
+        const litrosPrimerMes = Number(input_litros_primer_mes.value);
+        const tipoVeiculo = input_tipo_veiculo.value;
+
+        //Cálculo do peso do solvente da tinta.
+        const volumeSolventeTintaMes = litrosTintaMes / 3;
+        const pesoSolventeTintaMes = volumeSolventeTintaMes * 0.82;
+
+        //Cálculo do peso do solvente do primer.
+        const volumeSolventePrimerMes = litrosPrimerMes / 3;
+        const pesoSolventePrimerMes = volumeSolventePrimerMes * 0.82;
+
+        // Limite irá variar de acordo com a data da licença ambiental
         var limiteEmissao = 0;
 
-
-        if (dataLicenciamento < 2007) {
-            if (b1 > 0) {
-                limiteEmissao += 60;
+        if (input_data_licenciamento.checked) {
+            if (tipoVeiculo == "carro") {
+                limiteEmissao = 60;
+            } else if (tipoVeiculo == "caminhao") {
+                limiteEmissao = 90;
+            } else {
+                limiteEmissao = 225;
             }
-            if (b2 > 0) {
-                limiteEmissao += 90;
-            }
-            if (b3 > 0) {
-                limiteEmissao += 225;
+        } else {
+            if (tipoVeiculo == "carro") {
+                limiteEmissao = 45;
+            } else if (tipoVeiculo == "caminhao") {
+                limiteEmissao = 70;
+            } else {
+                limiteEmissao = 150;
             }
         }
 
-        if (dataLicenciamento >= 2007) {
-            if (b1 > 0) {
-                limiteEmissao += 45;
-            }
-            if (b2 > 0) {
-                limiteEmissao += 70;
-            }
-            if (b3 > 0) {
-                limiteEmissao += 150;
-            }
+        // Area da carroceria irá variar de acordo com o tipo de veículo.
+        var areaCarroceria;
+
+        if (tipoVeiculo == "carro") {
+            areaCarroceria = 30;
+        } else if (tipoVeiculo == "caminhao") {
+            areaCarroceria = 100;
+        } else {
+            areaCarroceria = 200;
         }
 
         /*  
@@ -91,7 +102,7 @@
         var volumeEmissao = calculo1 / calculo2;
         */
 
-        var volumeEmissao = Number((1000 * ((vc * COV) + solv - (RSA + RSB))) / ((b1 * S1) + (b2 * S2) + (b3 * S3)))
+        var volumeEmissao = (1000 * ((litrosTintaMes * COVTinta) + (litrosPrimerMes * COVPrimer) + pesoSolventeTintaMes + pesoSolventePrimerMes - (RSA + RSB))) / (qtdCarroceria * areaCarroceria);
 
         if (volumeEmissao <= limiteEmissao) {
             mostrar_calculo.innerHTML = `
