@@ -13,13 +13,13 @@ body {
 }   
 
 section {
-    padding: 28px 8%;
+    padding: 10px 8%;
 }
 
 header{
-    background-color: #DEEEF7;
+    background-color: #ddecf4;
     width: 100%;
-    padding: 28px 8%;
+    padding: 1px 8%;
     box-shadow: 0 0.1rem 0.5rem #ccc;
 }
 
@@ -31,25 +31,30 @@ header{
 }
 
 #logo{
-    font-size: 25px;
+    width: 6%;
+    height: 6%;
+    font-size: 10px;
+
     color: rgb(1, 37, 63);
 }
 
 #lista_inicial{
     display: flex;
     list-style: none;
-    gap: 48px;
+    gap: 100px;
+    padding: 2px;
 }
 
 .item_nav a {   
     text-decoration: none;
-    color: rgb(27, 100, 169);
+    color: rgb(37, 47, 57);
     font-weight: 600;
 }
 
+
 .item_nav.active a {
-    color: darkblue;
-    border-bottom: 3px solid #17043e;
+    color: rgb(41, 97, 218);
+    border-bottom: 3px solid #234e93;
 
 }
 
@@ -96,6 +101,7 @@ header{
 
 /* -------------------------------------------------------------------- */ 
 #cadastro {
+    color: rgb(37, 47, 57);
     display: flex;
     justify-content: center;
     list-style: none;
@@ -106,7 +112,7 @@ header{
 a {
     text-decoration: none;
     text-decoration: none;
-    color: rgb(27, 100, 169);
+    color: rgb(37, 47, 57);
     font-weight: 600;
 }
 
