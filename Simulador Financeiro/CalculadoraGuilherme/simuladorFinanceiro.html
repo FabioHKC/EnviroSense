@@ -109,7 +109,7 @@
                 var SOLV1 = 0.825 * proporcaoSolventeTinta           // Peso do solvente utilizado, considerando Thiner (0.825 g/cm³ de densidade)
                 var SOLV2 = 0.825 * proporcaoSolventePrimer          // Peso do solvente utilizado, considerando Thiner (0.825 g/cm³ de densidade)
                 var B1 = (VC1 + VC2) / 8                             // Estimando que o gasto para a pintura de um carro seja 5L de tinta + primer
-                var S1 = 30 * B1                                     // Estimando que a área superficial de pintura de um carro seja 25m²
+                var S1 = 25 * B1                                     // Estimando que a área superficial de pintura de um carro seja 25m²
                 var VE = 1000 * ((VC1 * COV1) + (VC2 * COV2) + SOLV1 + SOLV2) / ((S1))
             }
 
@@ -123,7 +123,7 @@
                 var SOLV1 = 0.825 * proporcaoSolventeTinta           // Peso do solvente utilizado, considerando Thiner (0.825 g/cm³ de densidade)
                 var SOLV2 = 0.825 * proporcaoSolventePrimer          // Peso do solvente utilizado, considerando Thiner (0.825 g/cm³ de densidade)
                 var B1 = (VC1 + VC2) / 20                            // Estimando que o gasto para a pintura de um caminhao seja 20L de tinta + primer
-                var S1 = 100 * B1                                     // Estimando que a área superficial de pintura de um caminhao seja 100m²
+                var S1 = 60 * B1                                     // Estimando que a área superficial de pintura de um caminhao seja 100m²
                 var VE = 1000 * ((VC1 * COV1) + (VC2 * COV2) + SOLV1 + SOLV2) / ((S1))
             }
 
@@ -137,7 +137,7 @@
                 var SOLV1 = 0.825 * proporcaoSolventeTinta           // Peso do solvente utilizado, considerando Thiner (0.825 g/cm³ de densidade)
                 var SOLV2 = 0.825 * proporcaoSolventePrimer          // Peso do solvente utilizado, considerando Thiner (0.825 g/cm³ de densidade)
                 var B1 = (VC1 + VC2) / 35                            // Estimando que o gasto para a pintura de um onibus seja 35L de tinta + primer
-                var S1 = 200 * B1                                    // Estimando que a área superficial de pintura de um carro seja 200m²
+                var S1 = 80 * B1                                    // Estimando que a área superficial de pintura de um carro seja 200m²
                 var VE = 1000 * ((VC1 * COV1) + (VC2 * COV2) + SOLV1 + SOLV2) / ((S1))
             }
 
