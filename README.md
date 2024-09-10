@@ -26,11 +26,11 @@ void loop() { //Rodar o código em looping para coleta de dados constante
     porcentagem = 100;
   }
 
-  Serial.print("Valor de Saída do Sensor: ");   //Saída de dados para o usuário
-  Serial.print(valorSensor);
-  Serial.print(" -> Porcentagem: ");
-  Serial.print(porcentagem);
-  Serial.println("%");
+  //Serial.print("Valor de Saída do Sensor: ");   //Saída de dados para o usuário
+  //Serial.print(valorSensor);
+  //Serial.print(" -> Porcentagem: ");
+  Serial.println(porcentagem);
+  //Serial.println("%");
 
   delay(1000);  //Atraso de 1 segundo antes de executar o código novamente
 }
