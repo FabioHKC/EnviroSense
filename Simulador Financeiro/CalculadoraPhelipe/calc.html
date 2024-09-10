@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador Financeiro</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="image.png" type="image/x-icon"> 
 </head>
 <body>
         
@@ -12,42 +12,46 @@
         
         <div class="container">
             <!-- Campos de Preenchimento de dados-->
-            <label>Informe o nome da empresa:</label> 
-            <input type="text" id="input_empresa"><br>
-            
-            <label>Informe a quantidade de tintas utilizadas no mês (L):</label>
+            Informe a quantidade de tintas utilizadas no mês (L):
             <input type="number" id="input_qtd_tintas_mes"><br>
             
-            <label>Informe a quantidade de primer utilizadas no mês (L):</label>
+            Informe a quantidade de primer utilizadas no mês (L):
             <input type="number"  id="input_qtd_primer_mes"><br>
 
-            <label>Selecione o tipo de veículo</label><br>
+            Selecione o tipo de veículo<br>
+
             <input type="radio" id="input_automoveis" name="veiculo" value="automoveis" onclick="mostrarEntradaVeiculo()">
-            <label for="automoveis">Automóveis</label>
-            
+            Automóveis
+
             <input type="radio" id="input_caminhoes" name="veiculo" value="caminhoes" onclick="mostrarEntradaVeiculo()">
-            <label for="caminhoes">Caminhões</label>
+            Caminhões
             
             <input type="radio" id="input_onibus" name="veiculo" value="onibus" onclick="mostrarEntradaVeiculo( )">
-            <label for="onibus">Ônibus</label><br><br>
+            Ônibus<br><br>
             
-              <!-- Campos Dinâmicos para Número de Veículos -->
+              <!-- Campos Dinâmicos para mostrar outras entradas de dados -->
             <div id="automoveis_input" style="display:none;">
                 <label>Número de automóveis pintados no mês:</label>
-                <input type="number" id="input_num_automoveis"><br>
+                <input type="number" class="input_num_carroceria"><br>
 
                 <label>Área do automóvel (m²): </label>
-                <input type="number" id="input_area_automovel"><br><br>
+                <input type="number" class="input_area_carroceria"><br><br>
             </div>
 
             <div id="caminhoes_input" style="display:none;">
                 <label>Número de caminhões pintados no mês:</label>
-                <input type="number" id="input_num_caminhoes"><br>
+                <input type="number" class="input_num_carroceria"><br>
+
+                <label>Área do caminhão (m²): </label>
+                <input type="number" class="input_area_carroceria"><br><br>
             </div>
 
             <div id="onibus_input" style="display:none;">
                 <label>Número de ônibus pintados no mês:</label>
-                <input type="number" id="input_num_onibus"><br>
+                <input type="number" class="input_num_carroceria"><br>
+
+                <label>Área do ônibus (m²): </label>
+                <input type="number" class="input_area_carroceria">><br><br>
             </div>
 
             Selecione a opção do ano de licenciamento:<br>
@@ -65,79 +69,101 @@
     <script>
         function mostrarEntradaVeiculo()
         {
-            const automoveisInput = document.getElementById('automoveis_input')
-            automoveisInput.style.display = 'none';
-            /*caminhoesInput.style.display = 'none';
-            onibusInput.style.display = 'none';*/
-            const veiculoSelecionado = document.querySelector('input[name="veiculo"]:checked').value;
+            // --- Variáveis da função ---
+
+            const automoveisInput = document.getElementById('automoveis_input');
+            automoveisInput.style.display = 'none'; // Escondendo o campo de automóveis
+            const caminhoesInput = document.getElementById('caminhoes_input');
+            caminhoesInput.style.display = 'none'; // Escondendo o campo de caminhões
+            const onibusInput = document.getElementById('onibus_input');
+            onibusInput.style.display = 'none'; // Escondendo o campo de ônibus
+            const veiculoSelecionado = document.querySelector('input[name="veiculo"]:checked').value; // Variável que pega o valor do check digitado
 
             if (veiculoSelecionado === 'automoveis')
-                automoveisInput.style.display = 'block'
+                automoveisInput.style.display = 'block';
+            else if (veiculoSelecionado === 'caminhoes')
+                caminhoesInput.style.display = 'block';
+            else if (veiculoSelecionado === 'onibus')
+                onibusInput.style.display = 'block';
         }
 
 
         function calculoEmissaoCOV()
         {
-        
             // --- Variáveis da função ---
-            const nomeEmpresa = input_empresa.value; 
             const volumeTintasMes = Number(input_qtd_tintas_mes.value);
             const volumePrimerMes = Number(input_qtd_primer_mes.value);
-            const qdtAutomoveisMes = Number(input_num_automoveis.value);
-            const areaAutomoveis = Number(input_area_automovel.value);
+            const qtdCarroceriasMes = Number (document.getElementsByClassName('input_num_carroceria')).value
+            const areaCarroceria = Number(document.getElementsByClassName('input_area_carroceria')).value
             const solventeTinta = (1 / 3) * volumeTintasMes * 0.825; // considerando o valor 0.0825 como valor da densidade do thiner
             const solventePrimer = (1 / 5) * volumeTintasMes * 0.825; 
-            const ano = document.querySelector('input[name="ano"]:checked').value;
-            var limiteEmissoesCarro = 0;
+            const ano = Number(document.querySelector('input[name="ano"]:checked')).value;
 
+            var limiteEmissoesCOVCarro = 0;
+            var limiteEmissoesCOVCaminhoes = 0;
+            var limiteEmissoesCOVOnibus = 0;
             if (ano < 2007)   
             {
-                limiteEmissoesCarro = 60; // Limite estabelecido pela CETESB
+                limiteEmissoesCOVCarro = 60; // Limite (g/m²) estabelecido pela CETESB para carros
+                limiteEmissoesCOVCaminhoes = 90; // Limite (g/m²) estabelecido pela CETESB para caminhão
+                limiteEmissoesCOVOnibus = 225; // Limite (g/m²) estabelecido pela CETESB para ônibus
             }
 
             else
             {   
-                limiteEmissoesCarro = 45;
+                limiteEmissoesCOVCarro = 45; // Limite (g/m²) estabelecido pela CETESB para carros
+                limiteEmissoesCOVCaminhoes = 70; // Limite (g/m²) estabelecido pela CETESB para caminhão
+                limiteEmissoesCOVOnibus = 150; // Limite (g/m²) estabelecido pela CETESB para  ônibus
             }
 
             /* 
             Cálculo de emissão de VOC
             VE = 1000 * [(VC1 * COV1) + (VC2 * COV2) + Solv1 + Solv2 - (RSA + RSB)] / [(B1 * S1) + (B2 * S2)]
             */
-            const VE = 1000 * [(volumeTintasMes * 0.42) + (volumePrimerMes * 0.42) + solventeTinta + solventePrimer] / (qdtAutomoveisMes * areaAutomoveis);
+            const VE = 1000 * [(volumeTintasMes * 0.42) + (volumePrimerMes * 0.42) + solventeTinta + solventePrimer] / (qtdCarroceriasMes * areaCarroceria);
             
             res_cov.innerHTML = `<br>A emissão de COV é ${VE.toFixed(2)} g/m²
-              <table border="1">
-        <tr>
-            <th>Atividade</th>
-            <th>Instalações licenciadas antes de 2007</th>
-            <th>Instalações licenciadas a partir de 2007</th>
-        </tr>
-        <tr>
-            <td>Automóveis</td>
-            <td>Menor que 60 g/m²</td>
-            <td>15 a 45 g/m²</td>
-        </tr>
-        <tr>
-            <td>Cabine de caminhões, carrocerias de veículos
-                utilitários, pick-up e caminhonete</td>
-            <td>90 g/m²</td>
-            <td>70 g/m²</td>
-        </tr>
-        <tr>
-            <td>Ônibus, Trator e veículos agrícolas e/ou utilizados
-                na construção civil</td>
-            <td>225 g/m²</td>
-            <td>150 g/m²</td>
-        </tr>
-        </table>
-        <br>`;
+                <table border="1">
+                <tr>
+                    <th>Atividade</th>
+                    <th>Instalações licenciadas antes de 2007</th>
+                    <th>Instalações licenciadas a partir de 2007</th>
+                </tr>
+                <tr>
+                    <td>Automóveis</td>
+                    <td>Menor que 60 g/m²</td>
+                    <td>15 a 45 g/m²</td>
+                </tr>
+                <tr>
+                    <td>Cabine de caminhões, carrocerias de veículos
+                        utilitários, pick-up e caminhonete</td>
+                    <td>90 g/m²</td>
+                    <td>70 g/m²</td>
+                </tr>
+                <tr>
+                    <td>Ônibus, Trator e veículos agrícolas e/ou utilizados
+                        na construção civil</td>
+                    <td>225 g/m²</td>
+                    <td>150 g/m²</td>
+                </tr>
+            </table>
+            <br>`;
 
-            if (VE > limiteEmissoesCarro)
-                res_cov.innerHTML += `Segundo a tabela apresentada acima, as emissões de COV estão acima do limite estabelecido
-             pela CETESB. Você estará sujeito a <strong>perda</strong> do licença de operação da fábrica, e terá seu fechamento!`
-             else
-                res_cov.innerHTML += `Segundo a tabela apresentada acima, as emissões de COV estão dentro do acordo estabelecido
+        if (VE > limiteEmissoesCOVCarro)
+            res_cov.innerHTML += `Segundo a tabela apresentada acima, as emissões de COV estão acima do limite estabelecido
+             pela CETESB. Você estará sujeito a tomar uma multa e a <strong>perder</strong> a licença de operação da fábrica, 
+             tendo o seu fechamento!`
+        else if (VE > limiteEmissoesCOVCaminhoes) 
+            res_cov.innerHTML += `Segundo a tabela apresentada acima, as emissões de COV estão acima do limite estabelecido
+             pela CETESB. Você estará sujeito a tomar uma multa e a <strong>perder</strong> a licença de operação da fábrica, 
+             tendo o seu fechamento!`
+        else if (VE > limiteEmissoesCOVOnibus)
+             res_cov.innerHTML += `Segundo a tabela apresentada acima, as emissões de COV estão acima do limite estabelecido
+             pela CETESB. Você estará sujeito a tomar uma multa e a <strong>perder</strong> a licença de operação da fábrica, 
+             tendo o seu fechamento! <br> Para evitar esse problema contrate a EnviroSense e nós te ajudaremos com um horizonte mais
+             <strong>sustentável</strong>!`
+        else
+            res_cov.innerHTML += `Segundo a tabela apresentada acima, as emissões de COV estão dentro do acordo estabelecido
              pela lei! <br> Parabéns, sua empresa está contribuindo com um ambiente <strong>mais sustentável</strong>!` 
             
            
