@@ -84,6 +84,19 @@ header{
     color: white;
 }
 
+#voltar {
+    border: none;
+    display: flex;  
+    background-color: #6CCE6F;
+    margin-top: 10px;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    width: 198px;
+}
+
 #btn_formulario3 {
     border: none;
     display: flex;  
@@ -148,8 +161,21 @@ div {
 
 #tinta_utilizada, #primer_utilizado{
     margin-left: 25%;
-    width: 20%;
+    width: 23%;
     margin-top: 15px;
+    border-radius: 10px;
+    font-size: 150%;
+    color: #6CCE6F;
+    font-weight: bold;
+    text-align: center;
+}
+
+#tipo_de_veiculo {
+    margin-left: 15%;
+    width: 23%;
+    margin-top: 15px;
+    border-radius: 10px;
+    font-size: 100%;
 }
 
 .visible {

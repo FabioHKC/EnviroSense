@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina 2</title>
+    <title>Simulador Financeiro</title>
    <link rel="stylesheet" href="estiloSimulador.css">
 </head>
 
@@ -142,7 +142,7 @@
                 resultados.innerHTML = `     
             <center>
             <br>
-        <p>Sua emissão atual, ignorando os métodos de contenção, é de <b style="font-size: 20px; color: red;">${VE.toFixed(2)}g/m² de COVs</b></p><br>
+        <p>Sua emissão atual, <b>ignorando os métodos de contenção</b>, é de <b style="font-size: 20px; color: red;">${VE.toFixed(2)}g/m² de COVs</b></p><br>
         <p>Considerando que sua licença ambiental é antes de 2007, os valores permitidos de emissão de COV é de <b>${limiteAmbiental} g/m²</b>, conforme o plano de redução de emissão de fontes estacionárias feito pela CETESB a seguir:</p><br>
         
         <table border="1">
@@ -169,11 +169,11 @@
             <td>150 g/m²</td>
         </table>
         <br>
-        <p>De acordo com a Lei Estadual nº 997/1976, aprovado pelo decreto estadual nº 8.468/1976 são estabelecidos valores de multas que podem ir de R$35,36 a R$353.600,00 referentes a emissão de poluentes na atmosfera, além de que com esses valores emitidos <b style= "color: red;">não será possivel a renovação de sua Licença ambiental de operação pela CETESB.</b></p>
+        <p>De acordo com a Lei Estadual nº 997/1976, aprovado pelo decreto estadual nº 8.468/1976 são estabelecidos valores de multas que podem ir de <b>R$35,36 a R$353.600,00</b> referentes a emissão de poluentes na atmosfera, além de que com esses valores emitidos <b style= "color: red;">não será possivel a renovação de sua Licença ambiental de operação pela CETESB.</b></p>
         <br>
         <p>Com um sistema de monitoramento eficiente, além da possibilidade de reduzir gastos diretamente da fonte de emissão de compostos orgânicos, você se enquadra dentro de parâmetros legais.</p>
         <br>
-        <button>Voltar a pagina inicial</button>
+        <a href="./simuladorFinanceiro.html">Voltar a pagina inicial</a>
         <br>
         <img src="https://png.pngtree.com/png-vector/20230523/ourmid/pngtree-verified-stamp-vector-png-image_7105265.png" style="height: 125px;">
         </center> `
@@ -182,7 +182,7 @@
                 resultados.innerHTML = `     
             <center>
             <br>
-        <p>Sua emissão atual, ignorando os métodos de contenção, é de <b style="font-size: 20px; color: red;">${VE.toFixed(2)}g/m² de COVs</b></p><br>
+        <p>Sua emissão atual, <b>ignorando os métodos de contenção</b>, é de <b style="font-size: 20px; color: red;">${VE.toFixed(2)}g/m² de COVs</b></p><br>
         <p>Considerando que sua licença ambiental é após 2007, os valores permitidos de emissão de COV é de no máximo <b>${limiteAmbiental} g/m²</b>, conforme o plano de redução de emissão de fontes estacionárias feito pela CETESB a seguir:</p><br>
         
         <table border="1">
@@ -210,11 +210,11 @@
         </tr>
         </table>
         <br>
-        <p>De acordo com a Lei Estadual nº 997/1976, aprovado pelo decreto estadual nº 8.468/1976 são estabelecidos valores de multas que podem ir de R$35,36 a R$353.600,00 referentes a emissão de poluentes na atmosfera, além de que com esses valores emitidos <b style= "color: red;">não será possivel a renovação de sua Licença ambiental de operação pela CETESB.</b></p>
+        <p>De acordo com a Lei Estadual nº 997/1976, aprovado pelo decreto estadual nº 8.468/1976 são estabelecidos valores de multas que podem ir de <b>R$35,36 a R$353.600,00</b> referentes a emissão de poluentes na atmosfera, além de que com esses valores emitidos <b style= "color: red;">não será possivel a renovação de sua Licença ambiental de operação pela CETESB.</b></p>
         <br>
         <p>Com um sistema de monitoramento eficiente, além da possibilidade de reduzir gastos diretamente da fonte de emissão de compostos orgânicos, você se enquadra dentro de parâmetros legais.</p>
         <br>
-        <button>Voltar a pagina inicial</button>
+        <a id="voltar" href="./simuladorFinanceiro.html">Voltar a pagina inicial</a>
         <br>
         <img src="https://png.pngtree.com/png-vector/20230523/ourmid/pngtree-verified-stamp-vector-png-image_7105265.png" style="height: 125px;">
         </center> `
