@@ -27,28 +27,28 @@ SELECT Nome, Empresa FROM CadastroUsuario
 	WHERE Nome = 'Pedro';
 
 -- TABELA DE MONITORAMENTO DOS DADOS RECEBIDOS PELO SENSOR INSTALADO EM NOSSOS CLIENTES --
-CREATE TABLE Monitoramento(
+CREATE TABLE Sensor(
 id INT PRIMARY KEY AUTO_INCREMENT,
 Empresa_parceira varchar(45),
 Leitura_do_sensor DECIMAL(4,2),
 Hora_data_leitura timestamp
 );
-ALTER TABLE Monitoramento MODIFY COLUMN Hora_data_leitura datetime default current_timestamp;
+ALTER TABLE Sensor MODIFY COLUMN Hora_data_leitura datetime default current_timestamp;
 
-INSERT INTO Monitoramento (Empresa_parceira, Leitura_do_sensor, hora_data_leitura) VALUES
+INSERT INTO Sensor (Empresa_parceira, Leitura_do_sensor, hora_data_leitura) VALUES
 ('AutoPaint Soluções em Pintura', 0.56, default),
 ('ColorPlus Tintas Automotivas', 0.21, default),
 ('Tintas Master Automotivas', 0.89, default),
 ('Pintura Moderna Veículos', 0.34, default);
 
-SELECT concat('A ', Empresa_parceira, ' está emitindo valores de COV acima do desejável ') AS Leitura_do_sensor FROM Monitoramento
+SELECT concat('A ', Empresa_parceira, ' está emitindo valores de COV acima do desejável ') AS Leitura_do_sensor FROM Sensor
 	WHERE Leitura_do_sensor >= 0.40;
     
 SELECT Empresa_parceira AS 'Cliente', Leitura_do_sensor AS 'Dados Obtidos', Hora_data_leitura AS 'Horário',
 	CASE 
     WHEN Leitura_do_sensor >= 0.40 THEN 'Emissão acima do desejável'
     WHEN Leitura_do_sensor <= 0.40 THEN 'Emissão dentro dos limites'
-	END AS 'Emissão' FROM Monitoramento;
+	END AS 'Emissão' FROM Sensor;
 
 -- TABELA PARA EMPRESAS ACOMPANHAR QUAIS TINTAS/PRIMERS EM SEUS PROCESSOS ESTÃO OCASIONANDO A MAIOR LIBERAÇÃO DE COV --
 CREATE TABLE Veiculos(
@@ -73,6 +73,8 @@ SELECT Modelo_veiculo, Area_superficial AS 'Area superficial (m²)', Qtde_carroc
 
 SELECT * FROM Veiculos 
 	WHERE Primer LIKE '%Epóxi%';
+
+SELECT * FROM 
 
 
 
