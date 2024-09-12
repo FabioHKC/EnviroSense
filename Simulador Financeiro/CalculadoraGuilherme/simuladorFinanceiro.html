@@ -64,7 +64,9 @@
         </select>
         <br><br>
         <h2>A sua licença ambiental é anterior a 2007?</h2>
-        <input type="checkbox" id="validacao_licenca"> Sim
+        <input type="checkbox" id="validacao_licenca_sim"> Sim
+        <br>
+        <input type="checkbox" id="validacao_licenca_nao"> Não
         <button id="btn_formulario3" onclick="mostrarSelecao()">Continuar</button>
     </div>
 
@@ -77,21 +79,21 @@
 
             if (tipo_de_veiculo.value == 'carro') {
                 var limiteAmbiental = 45                        // Limites de emissão estabelecidos por licenciamentos após 2007 para carros
-                if (validacao_licenca.checked) {
+                if (validacao_licenca_sim.checked) {
                     limiteAmbiental = 60                    // Limites de emissão permitidos antes de 2007
                 }
             }
 
             if (tipo_de_veiculo.value == 'caminhao') {
                 var limiteAmbiental = 70                        // Limites de emissão estabelecidos por licenciamentos após 2007 para Cabine de caminhões, carrocerias de veículos utilitários, pick-up e caminhonete
-                if (validacao_licenca.checked) {
+                if (validacao_licenca_sim.checked) {
                     limiteAmbiental = 90                    // Limites de emissão permitidos antes de 2007
                 }
             }
 
             if (tipo_de_veiculo.value == 'onibus') {
                 var limiteAmbiental = 150                        // Limites de emissão estabelecidos por licenciamentos após 2007 para Ônibus, Trator e veículos agrícolas e/ou utilizados na construção civil
-                if (validacao_licenca.checked) {
+                if (validacao_licenca_sim.checked) {
                     limiteAmbiental = 225                    // Limites de emissão permitidos antes de 2007
                 }
             }
@@ -138,7 +140,7 @@
                 var VE = 1000 * ((VC1 * COV1) + (VC2 * COV2) + SOLV1 + SOLV2) / ((S1))
             }
 
-            if (validacao_licenca.checked) {
+            if (validacao_licenca_sim.checked) {
                 resultados.innerHTML = `     
             <center>
             <br>
@@ -177,7 +179,7 @@
         <br>
         <img src="https://png.pngtree.com/png-vector/20230523/ourmid/pngtree-verified-stamp-vector-png-image_7105265.png" style="height: 125px;">
         </center> `
-            } else {
+            } else if (validacao_licenca_nao.checked) {
 
                 resultados.innerHTML = `     
             <center>
